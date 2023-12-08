@@ -1,10 +1,8 @@
 import express from 'express'
-import type { Request, Response } from 'express'
+import { helloWorld } from './api'
 
 const app = express()
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!')
-})
+app.get('/', helloWorld)
 
 export default app
