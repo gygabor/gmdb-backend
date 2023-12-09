@@ -1,9 +1,8 @@
 import express from 'express'
-import { helloWorld, movies } from './api'
+import router from './router'
 
 const app = express()
 
-app.get('/', helloWorld)
-app.get('/movies', movies)
+app.use(router)
 
 export default app
