@@ -15,7 +15,7 @@ interface Movie {
   adult: boolean
 }
 
-export interface Response {
+export interface SearchResponse {
   page: number
   results: Movie[]
   total_results: number
