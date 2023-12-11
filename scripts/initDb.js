@@ -12,32 +12,22 @@ const config = {
 const createDatabaseQuery = 'CREATE DATABASE gmdb;'
 
 const createTableQuery = `
-  CREATE TABLE IF NOT EXISTS movies (
+  CREATE TABLE IF NOT EXISTS movie_searches (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    overview TEXT,
-    release_date DATE,
-    vote_average FLOAT,
-    vote_count INT,
-    poster_path VARCHAR(255),
-    backdrop_path VARCHAR(255),
-    genre_ids INT[],
-    original_language VARCHAR(255),
-    original_title VARCHAR(255),
-    popularity FLOAT,
-    video BOOLEAN,
-    adult BOOLEAN,
-    page INT
+    query VARCHAR(255) NOT NULL,
+    page INT NOT NULL,
+    results JSONB,
+    request_count INT DEFAULT 0,
+    time TIMESTAMP NOT NULL
   );
 `
 
-const client = new Client(config)
-
 const initDb = async () => {
+  const client = new Client(config)
+
   try {
     await client.connect()
     await client.query(createDatabaseQuery)
-    await client.query(createTableQuery)
     console.log('Database created successfully')
   } catch (error) {
     console.error('Error creating database:', error)
@@ -46,4 +36,18 @@ const initDb = async () => {
   }
 }
 
-initDb()
+const initTable = async () => {
+  const client = new Client({ ...config, database: 'gmdb' })
+
+  try {
+    await client.connect()
+    await client.query(createTableQuery)
+    console.log('Table created successfully')
+  } catch (error) {
+    console.error('Error creating table:', error)
+  } finally {
+    client.end()
+  }
+}
+
+initDb().then(() => initTable())
