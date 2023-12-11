@@ -5,6 +5,7 @@ const config = {
   host: process.env.DB_HOST,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
+  database: 'gmdb',
 }
 
 const client = new Client(config)
