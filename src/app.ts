@@ -1,6 +1,6 @@
 import express from 'express'
-import router from './router'
-import db from './services/db'
+import router from '@src/router'
+import db from '@src/services/db'
 
 const app = express()
 
