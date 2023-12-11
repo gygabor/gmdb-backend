@@ -1,11 +1,13 @@
-import { axiosClient } from '@src/services/'
+import axios from '@src/services/axios'
 import { AxiosError } from 'axios'
-import { Response } from '../types'
+import { SearchResponse } from '../types'
 
 const fetchMovies = async (
   query: string,
   page: string,
-): Promise<Response | string> => {
+): Promise<SearchResponse | string> => {
+  const client = axios.client
+
   try {
     const url = new URLSearchParams({
       query,
@@ -14,7 +16,7 @@ const fetchMovies = async (
       include_adult: 'false',
     })
 
-    const response = await axiosClient.get(`/search/movie?${url.toString()}`)
+    const response = await client.get(`/search/movie?${url.toString()}`)
 
     return response.data
   } catch (error: unknown) {
