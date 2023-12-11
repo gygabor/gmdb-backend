@@ -1,5 +1,5 @@
-import { fetchMovies } from './services'
-import { Movie } from './types'
+import { fetchMovies } from '../services'
+import { Movie } from '../types'
 
 interface Props {
   query?: string
