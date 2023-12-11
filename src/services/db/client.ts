@@ -7,6 +7,6 @@ const config = {
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
 }
 
-const postgreSQLClient = new Client(config)
+const client = new Client(config)
 
-export default postgreSQLClient
+export default client

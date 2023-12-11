@@ -1,11 +1,11 @@
-import postgreSQLClient from '@src/services/postgreSQL/postgreSQLClient'
+import db from '@src/services/db'
 
 const updateDb = async (
   query: string,
   values: (string | Date)[],
 ): Promise<void> => {
   try {
-    await postgreSQLClient.query(query, values)
+    await db.client.query(query, values)
   } catch (error) {
     console.error(error)
   }
