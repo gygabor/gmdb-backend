@@ -1,1 +1,5 @@
-export { default } from './axiosClient'
+import client from './client'
+
+export default {
+  client,
+}

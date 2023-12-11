@@ -1,7 +1,7 @@
-import postgreSQLClient from './postgreSQLClient'
+import client from './client'
 import connectToDb from './connectToDb'
 
 export default {
-  postgreSQLClient,
+  client,
   connectToDb,
 }

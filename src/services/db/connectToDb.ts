@@ -1,4 +1,4 @@
-import postgreSQLClient from './postgreSQLClient'
+import postgreSQLClient from './client'
 
 const connectToDb = async () => {
   try {

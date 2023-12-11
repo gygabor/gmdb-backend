@@ -1,4 +1,4 @@
-export interface Movie {
+interface Movie {
   id: number
   title: string
   overview: string
@@ -13,4 +13,11 @@ export interface Movie {
   popularity: number
   video: boolean
   adult: boolean
+}
+
+export interface SearchResponse {
+  page: number
+  results: Movie[]
+  total_results: number
+  total_pages: number
 }

@@ -1,5 +1,5 @@
 import express from 'express'
-import { helloWorld, movies } from './api'
+import { helloWorld, movies } from '@src/api'
 
 const router = express.Router()
 
