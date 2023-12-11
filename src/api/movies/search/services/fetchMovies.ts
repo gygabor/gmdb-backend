@@ -1,11 +1,11 @@
 import { axiosClient } from '@src/services/'
 import { AxiosError } from 'axios'
-import { Movie } from '../types'
+import { Response } from '../types'
 
 const fetchMovies = async (
   query: string,
   page: string,
-): Promise<Movie[] | string> => {
+): Promise<Response | string> => {
   try {
     const url = new URLSearchParams({
       query,
@@ -19,7 +19,6 @@ const fetchMovies = async (
     return response.data
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
-      console.error(error)
       return error.message
     } else {
       throw new Error('Unknown error')
