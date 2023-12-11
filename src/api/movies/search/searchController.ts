@@ -1,5 +1,5 @@
-import { fetchMovies } from '../services'
-import { Movie } from '../types'
+import { fetchMovies, queries, updateDb } from './services'
+import { Response } from './types'
 
 interface Props {
   query?: string
@@ -9,8 +9,13 @@ interface Props {
 const moviesController = async ({
   query = '',
   page = '1',
-}: Props): Promise<Movie[] | string> => {
-  return await fetchMovies(query, page)
+}: Props): Promise<Response | string> => {
+  const result = await fetchMovies(query, page)
+  const sqlQuery = queries['save']
+
+  await updateDb(sqlQuery, [query, page, JSON.stringify(result), new Date()])
+
+  return result
 }
 
 export default moviesController
