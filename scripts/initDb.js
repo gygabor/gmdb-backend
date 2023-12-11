@@ -16,7 +16,7 @@ const createTableQuery = `
     id SERIAL PRIMARY KEY,
     query VARCHAR(255) NOT NULL,
     page INT NOT NULL,
-    results JSONB,
+    response JSONB,
     request_count INT DEFAULT 0,
     time TIMESTAMP NOT NULL
   );
