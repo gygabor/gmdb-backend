@@ -9,7 +9,7 @@ interface Props {
 const moviesController = async ({
   query = '',
   page = '1',
-}: Props): Promise<SearchResponse | string> => {
+}: Props): Promise<SearchResponse> => {
   const moviesInDb = await getMovies(query, page)
 
   if (moviesInDb) {
@@ -18,8 +18,12 @@ const moviesController = async ({
   } else {
     const result = await fetchMovies(query, page)
 
-    await insertMovies(query, page, JSON.stringify(result))
-    return result
+    await insertMovies(
+      query,
+      page,
+      JSON.stringify({ ...result, source: 'Cache' }),
+    )
+    return { ...result, source: 'TMDB' }
   }
 }
 
