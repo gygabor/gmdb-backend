@@ -17,12 +17,14 @@ const moviesController = async ({
     return moviesInDb.response
   } else {
     const result = await fetchMovies(query, page)
+    if (result.results.length !== 0) {
+      await insertMovies(
+        query,
+        page,
+        JSON.stringify({ ...result, source: 'Cache' }),
+      )
+    }
 
-    await insertMovies(
-      query,
-      page,
-      JSON.stringify({ ...result, source: 'Cache' }),
-    )
     return { ...result, source: 'TMDB' }
   }
 }
