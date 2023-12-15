@@ -7,12 +7,7 @@ const queryDb = async (
 ): Promise<QueryResult> => {
   const client = db.client
 
-  try {
-    return await client.query(query, values)
-  } catch (error) {
-    console.error(error)
-    throw new Error('Unknown error')
-  }
+  return await client.query(query, values)
 }
 
 export default queryDb
