@@ -5,6 +5,7 @@ import type {
   ErrorRequestHandler,
   NextFunction,
 } from 'express'
+import { ZodError } from 'zod'
 
 const errorHandler: ErrorRequestHandler = (
   err: Error,
@@ -16,6 +17,8 @@ const errorHandler: ErrorRequestHandler = (
 
   if (err instanceof AxiosError) {
     res.status(502).json({ message, stack })
+  } else if (err instanceof ZodError) {
+    res.status(400).json({ message: err.flatten().fieldErrors, stack })
   } else {
     res.status(500).json({ message, stack })
   }
