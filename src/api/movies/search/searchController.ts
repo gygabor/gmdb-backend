@@ -6,7 +6,7 @@ interface Props {
   page?: string
 }
 
-const moviesController = async ({
+const searchController = async ({
   query = '',
   page = '1',
 }: Props): Promise<SearchResponse> => {
@@ -29,4 +29,4 @@ const moviesController = async ({
   }
 }
 
-export default moviesController
+export default searchController

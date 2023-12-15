@@ -1,17 +1,18 @@
 import type { NextFunction, Request, Response } from 'express'
-import moviesController from './searchController'
+import searchController from './searchController'
 
-const route = async (
+const search = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
+  console.log(req)
   try {
-    const movies = await moviesController(req.query)
+    const movies = await searchController(req.query)
     res.send(movies)
   } catch (err) {
     next(err)
   }
 }
 
-export default route
+export default search
