@@ -3,6 +3,6 @@ import search from './search'
 
 const router = express.Router()
 
-router.get('/search', search)
+router.use('/movies', search)
 
 export default router
