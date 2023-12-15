@@ -21,11 +21,11 @@ const moviesController = async ({
       await insertMovies(
         query,
         page,
-        JSON.stringify({ ...result, source: 'Cache' }),
+        JSON.stringify({ ...result, source: 'cache' }),
       )
     }
 
-    return { ...result, source: 'TMDB' }
+    return { ...result, source: 'tmdb' }
   }
 }
 
