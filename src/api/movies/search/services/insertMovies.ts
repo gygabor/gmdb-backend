@@ -8,11 +8,7 @@ const insertMovies = async (
 ): Promise<void> => {
   const sqlQuery = queries['insertMovies']
 
-  try {
-    await queryDb(sqlQuery, [query, page, response, new Date()])
-  } catch (error) {
-    console.error(error)
-  }
+  await queryDb(sqlQuery, [query, page, response, new Date()])
 }
 
 export default insertMovies
