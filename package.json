@@ -18,7 +18,8 @@
     "express": "^4.18.2",
     "module-alias": "^2.2.3",
     "node": "^21.2.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -27,13 +28,13 @@
     "@types/pg": "^8.10.9",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
+    "cors": "^2.8.5",
     "eslint": "^8.55.0",
     "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.0.2",
     "prettier": "^3.1.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "cors": "^2.8.5"
+    "typescript": "^5.3.3"
   },
   "_moduleAliases": {
     "@src": "./src"
