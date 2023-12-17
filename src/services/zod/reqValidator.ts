@@ -1,5 +1,6 @@
-import { AnyZodObject } from 'zod'
+import { AnyZodObject, ZodError } from 'zod'
 import type { Request, Response, NextFunction } from 'express'
+import RequestError from '@src/api/errors/RequestError'
 
 const reqValidator =
   (schema: AnyZodObject) =>
@@ -12,7 +13,11 @@ const reqValidator =
       })
       next()
     } catch (err: unknown) {
-      next(err)
+      if (err instanceof ZodError) {
+        next(new RequestError(err))
+      } else {
+        next(err)
+      }
     }
   }
 

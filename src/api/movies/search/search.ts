@@ -6,7 +6,6 @@ const search = async (
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
-  console.log(req)
   try {
     const movies = await searchController(req.query)
     res.send(movies)
