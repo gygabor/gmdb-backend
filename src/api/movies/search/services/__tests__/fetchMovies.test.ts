@@ -1,7 +1,7 @@
 import { TMDB_MOVIE_SEARCH_URL } from '@src/constants/links'
 import fetchMovies from '../fetchMovies'
 import axios from '@src/services/axios'
-import { noResponseTmdb, responseTmdb } from '../../tests/mockedValues'
+import { noResponseTmdb, responseTmdb } from '../../__tests__/mockedValues'
 
 jest.mock('@src/services/axios')
 

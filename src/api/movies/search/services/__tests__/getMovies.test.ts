@@ -1,4 +1,4 @@
-import { responseDb } from '../../tests/mockedValues'
+import { responseDb } from '../../__tests__/mockedValues'
 import getMovies from '../getMovies'
 import queries from '../queries'
 import queryDb from '../queryDb'
