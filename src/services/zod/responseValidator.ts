@@ -1,4 +1,4 @@
-import ResponseError from '@src/api/errors/ResponseError'
+import ResponseError from '@src/errors/ResponseError'
 import { AnyZodObject, ZodError } from 'zod'
 
 const responseValidator = <T>(response: T, schema: AnyZodObject) => {

@@ -1,6 +1,6 @@
 import { AnyZodObject, ZodError } from 'zod'
 import type { Request, Response, NextFunction } from 'express'
-import RequestError from '@src/api/errors/RequestError'
+import RequestError from '@src/errors/RequestError'
 
 const requestValidator =
   (schema: AnyZodObject) =>

@@ -1,4 +1,4 @@
-import { RequestError, ResponseError } from '@src/api/errors'
+import { RequestError, ResponseError } from '@src/errors'
 import { AxiosError } from 'axios'
 import type {
   Request,
