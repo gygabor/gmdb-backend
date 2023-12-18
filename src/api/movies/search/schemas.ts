@@ -26,10 +26,13 @@ const movieSchema = z.object({
   adult: z.boolean(),
 })
 
-export const responseSchema = z.object({
+export const responseTmdbSchema = z.object({
   page: z.number(),
-  source: z.enum(['tmdb', 'cache']),
   results: z.array(movieSchema.optional()),
   total_pages: z.number(),
   total_results: z.number(),
+})
+
+export const responseApiSchema = responseTmdbSchema.extend({
+  source: z.string(),
 })

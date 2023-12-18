@@ -1,16 +1,16 @@
 import queries from './queries'
-import { ResponseType } from '../types'
+import { ResponseApiType } from '../types'
 import queryDb from './queryDb'
 
-interface Search {
+interface Movies {
   id: string
-  response: ResponseType
+  response: ResponseApiType
 }
 
 const getMovies = async (
   query: string,
   page: string,
-): Promise<Search | null> => {
+): Promise<Movies | null> => {
   const sqlQuery = queries['getMovies']
 
   const { rows } = await queryDb(sqlQuery, [query, page])
