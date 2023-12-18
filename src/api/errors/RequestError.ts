@@ -6,6 +6,8 @@ interface ZodErrorMessage {
 
 class RequestError extends Error {
   private zodErrorMessage: ZodErrorMessage
+  public status: number = 400
+
   constructor(err: ZodError) {
     super(err.message)
     this.zodErrorMessage = err.flatten().fieldErrors
