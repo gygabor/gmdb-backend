@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from 'express'
 import searchController from './searchController'
 import { responseValidator } from '@src/services/zod'
-import { responseSchema } from './schemas'
+import { responseApiSchema } from './schemas'
 
 const search = async (
   req: Request,
@@ -10,7 +10,7 @@ const search = async (
 ): Promise<void> => {
   try {
     const movies = await searchController(req.query)
-    responseValidator(movies, responseSchema)
+    responseValidator(movies, responseApiSchema)
     res.send(movies)
   } catch (err) {
     next(err)

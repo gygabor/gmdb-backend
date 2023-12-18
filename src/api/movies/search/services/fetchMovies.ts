@@ -1,10 +1,12 @@
 import axios from '@src/services/axios'
-import { ResponseType } from '../types'
+import { responseTmdbSchema } from '../schemas'
+
+type ResponseTmdbType = z.infer<typeof responseTmdbSchema>
 
 const fetchMovies = async (
   query: string,
   page: string,
-): Promise<ResponseType> => {
+): Promise<ResponseTmdbType> => {
   const client = axios.client
 
   const url = new URLSearchParams({

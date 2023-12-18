@@ -1,4 +1,4 @@
 import { z } from 'zod'
-import { responseSchema } from './schemas'
+import { responseApiSchema } from './schemas'
 
-export type ResponseType = z.infer<typeof responseSchema>
+export type ResponseApiType = z.infer<typeof responseApiSchema>
