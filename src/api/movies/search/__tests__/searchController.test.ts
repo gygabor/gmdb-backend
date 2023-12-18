@@ -10,7 +10,7 @@ import {
   responseApi,
   responseDb,
   responseTmdb,
-} from './mockedValues'
+} from '../mockedValues'
 
 const fetchMovies = fetchMoviesService as jest.MockedFunction<
   typeof fetchMoviesService
