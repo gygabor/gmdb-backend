@@ -1,7 +1,7 @@
 import ResponseError from '@src/api/errors/ResponseError'
 import { AnyZodObject, ZodError } from 'zod'
 
-const resValidator = <T>(response: T, schema: AnyZodObject) => {
+const responseValidator = <T>(response: T, schema: AnyZodObject) => {
   try {
     schema.parse(response)
   } catch (err: unknown) {
@@ -13,4 +13,4 @@ const resValidator = <T>(response: T, schema: AnyZodObject) => {
   }
 }
 
-export default resValidator
+export default responseValidator

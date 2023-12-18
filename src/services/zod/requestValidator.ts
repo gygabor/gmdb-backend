@@ -2,7 +2,7 @@ import { AnyZodObject, ZodError } from 'zod'
 import type { Request, Response, NextFunction } from 'express'
 import RequestError from '@src/api/errors/RequestError'
 
-const reqValidator =
+const requestValidator =
   (schema: AnyZodObject) =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -21,4 +21,4 @@ const reqValidator =
     }
   }
 
-export default reqValidator
+export default requestValidator

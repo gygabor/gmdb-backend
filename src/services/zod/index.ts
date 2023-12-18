@@ -1,2 +1,2 @@
-export { default as reqValidator } from './reqValidator'
-export { default as resValidator } from './resValidator'
+export { default as requestValidator } from './requestValidator'
+export { default as responseValidator } from './responseValidator'
