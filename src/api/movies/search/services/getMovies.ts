@@ -1,10 +1,10 @@
 import queries from './queries'
-import { SearchResponse } from '../types'
+import { ResponseType } from '../types'
 import queryDb from './queryDb'
 
 interface Search {
   id: string
-  response: SearchResponse
+  response: ResponseType
 }
 
 const getMovies = async (
