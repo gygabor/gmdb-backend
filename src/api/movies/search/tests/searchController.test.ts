@@ -5,6 +5,12 @@ import {
   updateCount,
 } from '../services'
 import searchController from '../searchController'
+import {
+  noResponseTmdb,
+  responseApi,
+  responseDb,
+  responseTmdb,
+} from './mockedValues'
 
 const fetchMovies = fetchMoviesService as jest.MockedFunction<
   typeof fetchMoviesService
@@ -22,42 +28,11 @@ jest.mock('../services', () => {
   }
 })
 
-const mockedMovie = {
-  id: 1,
-  title: 'test',
-  poster_path: '/path',
-  overview: 'overview',
-  release_date: '2021-01-01',
-  vote_average: 3.5,
-  vote_count: 100,
-  backdrop_path: '/path/backdrop',
-  genre_ids: [1, 2, 3],
-  original_language: 'en',
-  original_title: 'test',
-  popularity: 100,
-  video: false,
-  adult: false,
-}
-
-const resultTmdb = {
-  page: 1,
-  results: [mockedMovie],
-  total_pages: 1,
-  total_results: 1,
-}
-
-const noResultTmdb = {
-  page: 1,
-  results: [],
-  total_pages: 1,
-  total_results: 1,
-}
-
 const mockedQuery = { query: 'test', page: '1' }
 
 describe('searchController', () => {
   beforeAll(() => {
-    fetchMovies.mockResolvedValue(noResultTmdb)
+    fetchMovies.mockResolvedValue(noResponseTmdb)
   })
 
   it('calls getMovies', async () => {
@@ -72,10 +47,10 @@ describe('searchController', () => {
     })
 
     it(`calls fetchMovies. Movies don't exist in Tmdb`, async () => {
-      fetchMovies.mockResolvedValue(noResultTmdb)
+      fetchMovies.mockResolvedValue(noResponseTmdb)
 
       await expect(searchController(mockedQuery)).resolves.toEqual({
-        ...noResultTmdb,
+        ...noResponseTmdb,
         source: 'tmdb',
       })
 
@@ -84,36 +59,32 @@ describe('searchController', () => {
     })
 
     it(`fetches movies, saves and returns them. Movies exist in Tmdb`, async () => {
-      fetchMovies.mockResolvedValue(resultTmdb)
+      fetchMovies.mockResolvedValue(responseTmdb)
 
       await expect(
         searchController({ query: 'test', page: '1' }),
-      ).resolves.toEqual({
-        ...resultTmdb,
-        source: 'tmdb',
-      })
+      ).resolves.toEqual(responseApi)
 
       expect(insertMovies).toHaveBeenCalledWith(
         'test',
         '1',
-        JSON.stringify({ ...resultTmdb, source: 'cache' }),
+        JSON.stringify(responseDb),
       )
     })
   })
 
   describe(`movies are cached in the db`, () => {
     it(`increments count and return with movies`, async () => {
+      const id = '1'
+
       getMovies.mockResolvedValue({
-        id: '1',
-        response: { ...resultTmdb, source: 'cache' },
+        id,
+        response: responseDb,
       })
 
-      await expect(searchController(mockedQuery)).resolves.toEqual({
-        ...resultTmdb,
-        source: 'cache',
-      })
+      await expect(searchController(mockedQuery)).resolves.toEqual(responseDb)
 
-      expect(updateCount).toHaveBeenCalledWith('')
+      expect(updateCount).toHaveBeenCalledWith(id)
       expect(fetchMovies).not.toHaveBeenCalled()
       expect(insertMovies).not.toHaveBeenCalled()
     })
