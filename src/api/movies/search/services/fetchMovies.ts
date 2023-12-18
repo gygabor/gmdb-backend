@@ -1,10 +1,10 @@
 import axios from '@src/services/axios'
-import { SearchResponse } from '../types'
+import { ResponseType } from '../types'
 
 const fetchMovies = async (
   query: string,
   page: string,
-): Promise<SearchResponse> => {
+): Promise<ResponseType> => {
   const client = axios.client
 
   const url = new URLSearchParams({

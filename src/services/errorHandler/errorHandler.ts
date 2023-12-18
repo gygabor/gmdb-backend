@@ -1,3 +1,4 @@
+import { RequestError, ResponseError } from '@src/api/errors'
 import { AxiosError } from 'axios'
 import type {
   Request,
@@ -16,6 +17,10 @@ const errorHandler: ErrorRequestHandler = (
 
   if (err instanceof AxiosError) {
     res.status(502).json({ message, stack })
+  } else if (err instanceof RequestError) {
+    res.status(err.status).json({ message: err.getMessage(), stack })
+  } else if (err instanceof ResponseError) {
+    res.status(err.status).json({ message: err.getMessage(), stack })
   } else {
     res.status(500).json({ message, stack })
   }

@@ -1,1 +1,1 @@
-export { default } from './moviesRouter'
+export { default } from './router'

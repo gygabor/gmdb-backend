@@ -1,15 +1,15 @@
 import { fetchMovies, getMovies, insertMovies, updateCount } from './services'
-import { SearchResponse } from './types'
+import { ResponseType } from './types'
 
 interface Props {
   query?: string
   page?: string
 }
 
-const moviesController = async ({
+const searchController = async ({
   query = '',
   page = '1',
-}: Props): Promise<SearchResponse> => {
+}: Props): Promise<ResponseType> => {
   const moviesInDb = await getMovies(query, page)
 
   if (moviesInDb) {
@@ -29,4 +29,4 @@ const moviesController = async ({
   }
 }
 
-export default moviesController
+export default searchController
