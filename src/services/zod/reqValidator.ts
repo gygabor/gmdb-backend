@@ -4,7 +4,7 @@ import RequestError from '@src/api/errors/RequestError'
 
 const reqValidator =
   (schema: AnyZodObject) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, res: Response, next: NextFunction) => {
     try {
       schema.parse({
         body: req.body,
