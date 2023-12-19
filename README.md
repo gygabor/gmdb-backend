@@ -36,6 +36,14 @@ DB_PASSWORD="<PostgreSQL Password>"
 DB_NAME="<PostgreSQL Db name>"
 ```
 
+## Populate the Database
+
+Create `gmdb` database and `movie_searches` table with the `initDb` script
+
+```bash
+npm run initDb
+```
+
 ## Start the app
 
 ```bash
