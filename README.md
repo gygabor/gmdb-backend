@@ -86,4 +86,5 @@ curl --location 'http://localhost:3000/movies/search?query=godfather&page=2'
 
 - Add `Movie` and `Query` tables to the Db instead of store them in a table
 - Add e2e tests with `supertest`
-- Ceate openapi documentation from the zod schemas with the [zod-openapi](https://github.com/samchungy/zod-openapi) package
+- Create `openapi` documentation from the zod schemas with the [zod-openapi](https://github.com/samchungy/zod-openapi) package
+- Create `cron` job to delete the old data from the DB
